@@ -1,8 +1,7 @@
 export default {
-  input: "dist/Index.js",
+  input: "dist/example/example.js",
   output: [{
-    file: "dist/form-controls.js",
-    format: "iife",
-    name: "FormControls"
+    file: "dist/example/scripts.js",
+    format: "iife"
   }]
 };

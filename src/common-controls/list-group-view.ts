@@ -1,5 +1,5 @@
-export default class RenderedListGroup {
-  readonly container = document.createElement("div");
+export default class ListGroupView {
+  readonly outer = document.createElement("div");
   readonly header = document.createElement("div");
   readonly body = document.createElement("div");
   readonly label = document.createElement("label");
@@ -16,10 +16,10 @@ export default class RenderedListGroup {
     this.buttonMoveUp.innerHTML = "&#9650;";
     this.buttonMoveDown.innerHTML = "&#9660;";
     
-    this.container.classList.add("list-group");
+    this.outer.classList.add("list-group");
 
     this.header.append(this.label, this.combo, this.buttonAdd, this.buttonRemove, this.buttonMoveUp, this.buttonMoveDown);
-    this.container.append(this.header, this.body);
+    this.outer.append(this.header, this.body);
 
     this.combo.addEventListener("change", () => select(this.combo.selectedIndex));
     this.buttonAdd.addEventListener("click", () => add());
