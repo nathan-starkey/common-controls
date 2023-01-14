@@ -240,6 +240,22 @@
         set value(value) {
             this.items.import(value);
         }
+        get disabled() {
+            return this.element.classList.contains("disabled");
+        }
+        set disabled(disabled) {
+            if (disabled) {
+                this.value = undefined;
+                this.element.classList.add("disabled");
+            }
+            else {
+                this.element.classList.remove("disabled");
+            }
+            for (let child of this.children) {
+                child.disabled = disabled;
+            }
+            this.render();
+        }
         notifyChange() {
             super.notifyChange();
             this.render();
@@ -432,6 +448,9 @@
         new SelectBox("type", ["option1", "option2", "option3"]),
         new CheckBox("enabled"),
         new TextArea("notes"),
+        new ListGroup("palette", new TableGroup([
+            new TextBox()
+        ])),
         new Button("random float", function () {
             let output = root.children.n.children.output;
             output.value = Math.random().toString();

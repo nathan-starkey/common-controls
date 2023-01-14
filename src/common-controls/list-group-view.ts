@@ -40,7 +40,7 @@ export default class ListGroupView {
     let isEmpty = options.length == 0;
     let isFirst = index == 0;
     let isLast = index == options.length - 1;
-
+    
     this.combo.disabled = isDisabled || isEmpty;
     this.buttonAdd.disabled = isDisabled;
     this.buttonRemove.disabled = isDisabled || isEmpty;

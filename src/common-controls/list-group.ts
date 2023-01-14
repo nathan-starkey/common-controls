@@ -55,6 +55,25 @@ export default class ListGroup<T> extends CommonControl<HTMLDivElement, T[]> {
     this.items.import(value);
   }
 
+  get disabled() {
+    return this.element.classList.contains("disabled");
+  }
+
+  set disabled(disabled: boolean) {
+    if (disabled) {
+      this.value = undefined;
+      this.element.classList.add("disabled");
+    } else {
+      this.element.classList.remove("disabled");
+    }
+
+    for (let child of this.children) {
+      child.disabled = disabled;
+    }
+
+    this.render();
+  }
+
   notifyChange(): void {
     super.notifyChange();
 
