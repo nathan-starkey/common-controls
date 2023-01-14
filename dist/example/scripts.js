@@ -404,6 +404,28 @@
         }
     }
 
+    class Observer extends CommonControl {
+        constructor(child, callback) {
+            super(null, "", [child]);
+            this.callback = callback;
+        }
+        get value() {
+            return null;
+        }
+        set value(value) {
+        }
+        get disabled() {
+            return false;
+        }
+        set disabled(disabled) {
+        }
+        notifyChange() {
+            if (this.callback) {
+                this.callback(this);
+            }
+        }
+    }
+
     const root = new ListGroup(new TableGroup("n", [
         new TextBox("name"),
         new NumericBox("count"),
@@ -416,6 +438,7 @@
         }),
         new TextOutput("output")
     ]), (item) => item["name"]);
+    new Observer(root, () => console.log("tree changed!"));
     document.body.append(root.element);
     console.log("root =", globalThis["root"] = root);
 

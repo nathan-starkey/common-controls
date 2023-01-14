@@ -8,6 +8,7 @@ import TextOutput from "../common-controls/text-output";
 import TableGroup from "../common-controls/table-group";
 import TextBox from "../common-controls/text-box";
 import ICommonControl from "../common-controls/i-common-control";
+import Observer from "../common-controls/observer";
 
 const root: ICommonControl<any, any> = new ListGroup(new TableGroup("n", [
   new TextBox("name"),
@@ -22,6 +23,8 @@ const root: ICommonControl<any, any> = new ListGroup(new TableGroup("n", [
   }),
   new TextOutput("output")
 ]), (item) => item["name"]);
+
+new Observer(root, () => console.log("tree changed!"));
 
 document.body.append(root.element);
 
