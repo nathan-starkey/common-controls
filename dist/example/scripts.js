@@ -192,6 +192,7 @@
                 items = [];
             }
             this.items.length = 0;
+            this.index = -1;
             for (let item of items) {
                 this.push(item);
                 this.items.push(this.pull());
@@ -246,7 +247,8 @@
         }
         set disabled(disabled) {
             if (disabled) {
-                this.value = undefined;
+                this.items.items = [];
+                this.items.index = -1;
                 this.element.classList.add("disabled");
             }
             else {
@@ -263,7 +265,7 @@
         }
         render() {
             this.items.store();
-            this.children[0].disabled = this.disabled || this.items.index == -1;
+            this.children[0].disabled = this.items.items.length == 0;
             this.view.render(this.disabled, this.items.items.map((item, index) => this.nameItem(item, index) || "(empty)"), this.items.index);
         }
     }
@@ -449,9 +451,7 @@
         new SelectBox("type", ["option1", "option2", "option3"]),
         new CheckBox("enabled"),
         new TextArea("notes"),
-        new ListGroup("palette", new TableGroup([
-            new TextBox()
-        ])),
+        new ListGroup("palette", new TextBox()),
         new Button("random float", function () {
             let output = root.children.n.children.output;
             output.value = Math.random().toString();
@@ -459,6 +459,10 @@
         new TextOutput("output")
     ]), (item) => item["name"]);
     new Observer(root, () => console.log("tree changed!"));
+    root.value = [{
+            name: "entry1",
+            palette: ["subentry1"]
+        }];
     document.body.append(root.element);
     console.log("root =", globalThis["root"] = root);
 

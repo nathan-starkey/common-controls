@@ -16,9 +16,7 @@ const root: ICommonControl<any, any> = new ListGroup(new TableGroup("n", [
   new SelectBox("type", ["option1", "option2", "option3"]),
   new CheckBox("enabled"),
   new TextArea("notes"),
-  new ListGroup("palette", new TableGroup([
-    new TextBox()
-  ])),
+  new ListGroup("palette", new TextBox()),
   new Button("random float", function () {
     let output = root.children.n.children.output;
 

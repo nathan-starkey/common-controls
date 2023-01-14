@@ -61,7 +61,8 @@ export default class ListGroup<T> extends CommonControl<HTMLDivElement, T[]> {
 
   set disabled(disabled: boolean) {
     if (disabled) {
-      this.value = undefined;
+      this.items.items = [];
+      this.items.index = -1;
       this.element.classList.add("disabled");
     } else {
       this.element.classList.remove("disabled");
@@ -83,7 +84,7 @@ export default class ListGroup<T> extends CommonControl<HTMLDivElement, T[]> {
   render() {
     this.items.store();
 
-    this.children[0].disabled = this.disabled || this.items.index == -1;
+    this.children[0].disabled = this.items.items.length == 0;
 
     this.view.render(this.disabled, this.items.items.map((item, index) => this.nameItem(item, index) || "(empty)"), this.items.index)
   }

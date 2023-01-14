@@ -78,6 +78,7 @@ export default class MultiInstanceEditor<T> {
     }
 
     this.items.length = 0;
+    this.index = -1;
 
     for (let item of items) {
       this.push(item);
