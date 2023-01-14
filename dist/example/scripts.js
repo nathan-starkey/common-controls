@@ -106,6 +106,7 @@
             this.outer.classList.add("list-group");
             this.header.append(this.label, this.combo, this.buttonAdd, this.buttonRemove, this.buttonMoveUp, this.buttonMoveDown);
             this.outer.append(this.header, this.body);
+            this.label.addEventListener("click", () => this.outer.classList.toggle("collapsed"));
             this.combo.addEventListener("change", () => select(this.combo.selectedIndex));
             this.buttonAdd.addEventListener("click", () => add());
             this.buttonRemove.addEventListener("click", () => remove());
